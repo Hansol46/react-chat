@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import socket from '.././socket'
 
 
 function LogBlock() {
+  const [roomId, setRoomId] = useState('')
+  const [userName, setUserName] = useState('')
+  const onEnter = () => {
+    console.log(roomId, userName)
+  }
   return (
     <>
       <div className="container">
@@ -16,19 +21,23 @@ function LogBlock() {
               aria-describedby="emailHelp"
               placeholder="Введите номер комнаты"
               required
+              value={roomId}
+              onChange={event => setRoomId(event.target.value)}
             />
           </div>
           <div className="form-group">
             <label for="exampleInputPassword1">Ваше имя/никнейм</label>
             <input
-              type="password"
+              type="text"
               className="form-control"
               id="exampleInputPassword1"
               placeholder="Введите ваше имя"
               required
+              value={userName}
+              onChange={event => setUserName(event.target.value)}
             />
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button onClick={onEnter} type="submit" className="btn btn-primary">
             Войти
           </button>
         </form>

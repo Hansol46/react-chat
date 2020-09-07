@@ -24,6 +24,9 @@ const rooms = {
 app.get('/rooms', (request, response) =>{
     response.json(rooms)
 })
+app.post('/rooms', (request, response) => {
+    console.log('Hello!')
+})
 
 io.on('connection', socket => {             // нужно понять подключился ли человек 
  console.log('user connected', socket.id)
