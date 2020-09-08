@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from 'axios'
 
 
 function LogBlock({onLogin}) {
+  // const [roomId, setRoomId] = useState('')
+  // const [userName, setUserName] = useState('')
+
+  // const onEnter = async () => {
+  //   const loggerData = {
+  //     roomId,
+  //     userName
+  //   }
+  //   await axios.post('/rooms', loggerData)
+  //   onLogin(loggerData)
+  // }
   const [roomId, setRoomId] = React.useState('');
   const [userName, setUserName] = React.useState('');
+  // const [isLoading, setLoading] = React.useState(false);
 
   const onEnter = async () => {
     if (!roomId || !userName) {
@@ -14,6 +26,7 @@ function LogBlock({onLogin}) {
       roomId,
       userName,
     };
+    // setLoading(true);
     await axios.post('/rooms', obj);
     onLogin(obj);
   };

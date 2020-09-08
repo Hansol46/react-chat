@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import socket from "../socket";
 import "../App.css";
 
@@ -33,12 +33,12 @@ function Chat({ users, messages, userName, roomId, onAddMessage }) {
           <div>
             <h3>Комната №{roomId} </h3>
           </div>
-
+          
           {/* Users block */}
           <div className="chatMainUsers">
             <h5>Пользователей онлайн ({users.length}): </h5>
             {users.map((name, index) => (
-              <span key={name + index}> {name}, &nbsp;</span>
+              <span> {name}, &nbsp;</span>
             ))}
           </div>
 

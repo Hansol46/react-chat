@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer, useEffect } from "react";
 import "./App.css";
 import LogBlock from "./Components/LogBlock";
 import socket from './socket'

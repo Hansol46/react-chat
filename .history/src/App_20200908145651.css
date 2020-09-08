@@ -57,7 +57,8 @@
 }
 .chatMainUsers {
   display: flex;
-  align-items: center
+  align-items: center;
+  /* border: 2px solid red; */
 }
 .chatMainUsers span {
   font-size: 16px;
@@ -73,7 +74,6 @@
   border: 2px solid black;
   border-radius: 10px;
   overflow: auto;
-  
 }
 .messages span {
   font-size: 16px;
@@ -85,15 +85,10 @@
 }
 .messageText {
   display: flex;
-  font-size: 12px;
-  /* border: 2px solid red; */
 }
 .messageText .date {
-  font-size: 12px;
+  font-size: 13px;
 }
-.messageText .text {
-  font-size: 18px;
-} 
 .chatMain form {
   margin-top: 20px;
   width: 300px;

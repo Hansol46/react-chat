@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useReducer, useEffect } from "react";
 import "./App.css";
 import LogBlock from "./Components/LogBlock";
 import socket from './socket'
 import reducer from './reducer'
 import Chat from "./Components/Chat";
 import axios from "axios";
+import { Router } from "express";
 
 function App() {
   const [state, dispatch] = React.useReducer(reducer, {

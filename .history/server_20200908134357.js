@@ -1,8 +1,8 @@
-const express = require('express');
+const express = require('express')
 
-const app = express();
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
+const app = express()
+const server = require('http').Server(app)
+const io = require('socket.io')(server)           // наш server теперь знает, что такое socket
 
 app.use(express.json());
 
@@ -10,13 +10,13 @@ const rooms = new Map();
 
 app.get('/rooms/:id', (req, res) => {
   const { id: roomId } = req.params;
-  const obj = rooms.has(roomId)
+  const loggerData = rooms.has(roomId)
     ? {
         users: [...rooms.get(roomId).get('users').values()],
         messages: [...rooms.get(roomId).get('messages').values()],
       }
     : { users: [], messages: [] };
-  res.json(obj);
+  res.json(loggerData);
 });
 
 app.post('/rooms', (req, res) => {
@@ -38,23 +38,23 @@ io.on('connection', (socket) => {
     socket.join(roomId);
     rooms.get(roomId).get('users').set(socket.id, userName);
     const users = [...rooms.get(roomId).get('users').values()];
-    socket.to(roomId).broadcast.emit('ROOM:SET_USERS', users);
+    io.in(roomId).broadcast.emit('ROOM:SET_USERS', users);
   });
 
   socket.on('ROOM:NEW_MESSAGE', ({ roomId, userName, text }) => {
-    const obj = {
+    const loggerData = {
       userName,
       text,
     };
-    rooms.get(roomId).get('messages').push(obj);
-    socket.to(roomId).broadcast.emit('ROOM:NEW_MESSAGE', obj);
+    rooms.get(roomId).get('messages').push(loggerData);
+    io.in(roomId).broadcast.emit('ROOM:NEW_MESSAGE', loggerData);
   });
 
   socket.on('disconnect', () => {
     rooms.forEach((value, roomId) => {
       if (value.get('users').delete(socket.id)) {
         const users = [...value.get('users').values()];
-        socket.to(roomId).broadcast.emit('ROOM:SET_USERS', users);
+        io.in(roomId).broadcast.emit('ROOM:SET_USERS', users);
       }
     });
   });
@@ -63,8 +63,8 @@ io.on('connection', (socket) => {
 });
 
 server.listen(8888, (err) => {
-  if (err) {
-    throw Error(err);
-  }
-  console.log('Сервер запущен!');
+    if (err) {
+      throw Error(err);
+    }
+    console.log('Сервер запущен!');
 });

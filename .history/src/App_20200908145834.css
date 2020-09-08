@@ -86,13 +86,14 @@
 .messageText {
   display: flex;
   font-size: 12px;
-  /* border: 2px solid red; */
+  border: 2px solid red;
+  display: flex;
 }
 .messageText .date {
-  font-size: 12px;
+  font-size: 13px;
 }
 .messageText .text {
-  font-size: 18px;
+  font-size: 13px;
 } 
 .chatMain form {
   margin-top: 20px;

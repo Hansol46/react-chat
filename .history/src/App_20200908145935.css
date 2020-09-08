@@ -69,7 +69,7 @@
 .messages {
   background-color: #fff;
   height: 300px;
-  color: black;
+  /* color: black; */
   border: 2px solid black;
   border-radius: 10px;
   overflow: auto;
@@ -86,13 +86,15 @@
 .messageText {
   display: flex;
   font-size: 12px;
-  /* border: 2px solid red; */
+  border: 2px solid red;
+  display: flex;
+  align-items: end;
 }
 .messageText .date {
-  font-size: 12px;
+  font-size: 13px;
 }
 .messageText .text {
-  font-size: 18px;
+  font-size: 13px;
 } 
 .chatMain form {
   margin-top: 20px;

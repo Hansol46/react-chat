@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer, useEffect } from "react";
 import "./App.css";
 import LogBlock from "./Components/LogBlock";
 import socket from './socket'
@@ -49,6 +49,7 @@ function App() {
 
   window.socket = socket;
   return (
+
     <>
       {!state.joined ? (<LogBlock onLogin={onLogin} />) : (<Chat {...state} onAddMessage={addMessage} />)}
     </>

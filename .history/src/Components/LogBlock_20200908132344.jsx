@@ -1,27 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from 'axios'
 
 
 function LogBlock({onLogin}) {
-  const [roomId, setRoomId] = React.useState('');
-  const [userName, setUserName] = React.useState('');
+  const [roomId, setRoomId] = useState('')
+  const [userName, setUserName] = useState('')
 
   const onEnter = async () => {
-    if (!roomId || !userName) {
-      return alert('Неверные данные');
-    }
-    const obj = {
+    const loggerData = {
       roomId,
-      userName,
-    };
-    await axios.post('/rooms', obj);
-    onLogin(obj);
-  };
+      userName
+    }
+    await axios.post('/rooms', loggerData)
+    onLogin(loggerData)
+  }
 
   return (
     <>
     <div className="App">
           <div className="container">
+            <form>
             <div  className="formEnter">
                <div className="form-group">
                 <label htmlFor="exampleInputEmail1"> Номер комнаты</label>
@@ -51,6 +49,8 @@ function LogBlock({onLogin}) {
                 Войти
               </button>
             </div>
+             
+            </form>
 
           </div>
     </div>

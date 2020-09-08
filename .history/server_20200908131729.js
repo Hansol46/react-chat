@@ -1,8 +1,8 @@
-const express = require('express');
+const express = require('express')
 
-const app = express();
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
+const app = express()
+const server = require('http').Server(app)
+const io = require('socket.io')(server)           // наш server теперь знает, что такое socket
 
 app.use(express.json());
 
@@ -10,13 +10,13 @@ const rooms = new Map();
 
 app.get('/rooms/:id', (req, res) => {
   const { id: roomId } = req.params;
-  const obj = rooms.has(roomId)
+  const loggerData = rooms.has(roomId)
     ? {
         users: [...rooms.get(roomId).get('users').values()],
         messages: [...rooms.get(roomId).get('messages').values()],
       }
     : { users: [], messages: [] };
-  res.json(obj);
+  res.json(loggerData);
 });
 
 app.post('/rooms', (req, res) => {
@@ -42,12 +42,12 @@ io.on('connection', (socket) => {
   });
 
   socket.on('ROOM:NEW_MESSAGE', ({ roomId, userName, text }) => {
-    const obj = {
+    const loggerData = {
       userName,
       text,
     };
-    rooms.get(roomId).get('messages').push(obj);
-    socket.to(roomId).broadcast.emit('ROOM:NEW_MESSAGE', obj);
+    rooms.get(roomId).get('messages').push(loggerData);
+    socket.to(roomId).broadcast.emit('ROOM:NEW_MESSAGE', loggerData);
   });
 
   socket.on('disconnect', () => {
@@ -63,8 +63,8 @@ io.on('connection', (socket) => {
 });
 
 server.listen(8888, (err) => {
-  if (err) {
-    throw Error(err);
-  }
-  console.log('Сервер запущен!');
+    if (err) {
+      throw Error(err);
+    }
+    console.log('Сервер запущен!');
 });
