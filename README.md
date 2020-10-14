@@ -1,3 +1,3 @@
 
 
-![screenshot of sample](https://ibb.co/PGJ2Kc0)
+![screenshot of sample](https://i.ibb.co/fdZ3fkL/img-site2.png)
