@@ -17,8 +17,10 @@ This chat-app, created on react with the ability to connect multiple users.
 
 ### SETUP: 
 
-1. download project command `" git clon https://github.com/Hansol46/react-search-films.git "` or download zip file
+1. download project command `" git clon https://github.com/Hansol46/react-search-films.git "` 
+  or download zip file
 2. open project and use comand `"npm install"` 
-3. start server comand `"npm run start"` (in case of a space, install the nodemon package again used comand `"npm i nodemone"`)
+3. start server comand `"npm run start"` 
+  (in case of a space, install the nodemon package again used comand `"npm i nodemone"`)
 4. use `"npm start"`
 5. ready!
