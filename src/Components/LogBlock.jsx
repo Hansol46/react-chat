@@ -45,9 +45,10 @@ function LogBlock({onLogin}) {
                   required
                   value={userName}
                   onChange={event => setUserName(event.target.value)}
+                  onKeyPress={event => {if(event.key === 'Enter') { onEnter()}}}
                 />
               </div>
-              <button onClick={onEnter}  className="btn btn-primary">
+              <button onClick={onEnter}  className="btn btn-primary" type='submit'> 
                 Войти
               </button>
             </div>

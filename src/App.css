@@ -6,7 +6,7 @@
   margin: 0 auto;
   padding-top: 200px;
   padding-bottom: 300px;
-  margin-top: 100px;
+  margin-top: 20px;
   background-image: url('https://data.whicdn.com/images/245234763/original.jpg');
   background-size: 100%;
   /* opacity: 0.5; */
@@ -28,10 +28,11 @@
   box-shadow: 0 0 5px rgba(0,0,0,0.9);
   border-radius: 30px;
   width: 800px;
+  /* height: 80vh; */
   margin: 0 auto;
   /* padding-top: 200px; */
   padding-bottom: 100px;
-  margin-top: 100px;
+  margin-top: 20px;
   background-image: url('https://data.whicdn.com/images/245234763/original.jpg');
   background-size: 100%;
   /* opacity: 0.5; */
@@ -52,6 +53,9 @@
   flex-direction: column;
   
 }
+.chatMain h3 span {
+  color: pink;
+}
 .chatMain li {
   list-style-type: none
 }
@@ -62,6 +66,8 @@
 .chatMainUsers span {
   font-size: 16px;
   padding-left: 5px;
+  padding-bottom: 5px;
+  color: pink;
 }
 
 
@@ -80,7 +86,7 @@
 }
 .messages p {
   font-size: 18px;
-  color: pink;
+  color: black;
   padding-left: 10px;
 }
 .messageText {

@@ -31,7 +31,7 @@ function Chat({ users, messages, userName, roomId, onAddMessage }) {
       <div className="chatBlock">
         <div className="chatMain">
           <div>
-            <h3>Комната №{roomId} </h3>
+            <h3>Комната №&nbsp; <span> {roomId} </span>  </h3>
           </div>
 
           {/* Users block */}
@@ -67,6 +67,9 @@ function Chat({ users, messages, userName, roomId, onAddMessage }) {
               onChange={(e) => setMessageValue(e.target.value)}
               className="form-control"
               rows="3"
+              // onKeyPress={(e) => setMessageValue(e.target.value)}
+              onKeyPress={event => { if (event.key === 'Enter') { onSendMessage()} }}
+              // type='text'
             ></textarea>
             <button
               onClick={onSendMessage}
