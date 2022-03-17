@@ -1,5 +1,5 @@
 import React from "react";
-import socket from "../socket";
+import { socket } from "../socket";
 import "../App.css";
 
 function Chat({ users, messages, userName, roomId, onAddMessage }) {
@@ -20,18 +20,21 @@ function Chat({ users, messages, userName, roomId, onAddMessage }) {
     messagesRef.current.scrollTo(0, 99999);
   }, [messages]);
 
-  // <-------- current Date ------->
   var currentTime = new Date();
+
   var options = {
     hour: "numeric",
     minute: "numeric",
   };
+  
   return (
     <>
       <div className="chatBlock">
         <div className="chatMain">
           <div>
-            <h3>Комната №&nbsp; <span> {roomId} </span>  </h3>
+            <h3>
+              Комната №&nbsp; <span> {roomId} </span>{" "}
+            </h3>
           </div>
 
           {/* Users block */}
@@ -68,7 +71,11 @@ function Chat({ users, messages, userName, roomId, onAddMessage }) {
               className="form-control"
               rows="3"
               // onKeyPress={(e) => setMessageValue(e.target.value)}
-              onKeyPress={event => { if (event.key === 'Enter') { onSendMessage()} }}
+              onKeyPress={(event) => {
+                if (event.key === "Enter") {
+                  onSendMessage();
+                }
+              }}
               // type='text'
             ></textarea>
             <button

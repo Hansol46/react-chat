@@ -1,13 +1,14 @@
-import React from "react";
-import "./App.css";
-import LogBlock from "./Components/LogBlock";
-import socket from './socket'
-import reducer from './reducer'
-import Chat from "./Components/Chat";
-import axios from "axios";
+import React, { useReducer, useEffect } from "react";
+// Api
+import { api } from "./api";
 
-function App() {
-  const [state, dispatch] = React.useReducer(reducer, {
+import { LogBlock } from "./Components/LogBlock";
+import { socket } from "./socket";
+import { rootReducer } from "./reducer";
+import Chat from "./Components/Chat";
+
+export const App = () => {
+  const [state, dispatch] = useReducer(rootReducer, {
     joined: false,
     roomId: null,
     userName: null,
@@ -15,45 +16,46 @@ function App() {
     messages: [],
   });
 
-  const onLogin = async (obj) => {
+  const onLogin = async (loginData) => {
     dispatch({
-      type: 'JOINED',
-      payload: obj,
+      type: "JOINED",
+      payload: loginData,
     });
-    socket.emit('ROOM:JOIN', obj);
-    const { data } = await axios.get(`/rooms/${obj.roomId}`);
+
+    socket.emit("ROOM:JOIN", loginData);
+
+    const { rooms } = await api.getRooms(loginData.roomId);
+
     dispatch({
-      type: 'SET_DATA',
-      payload: data,
+      type: "SET_DATA",
+      payload: rooms,
     });
   };
 
   const setUsers = (users) => {
     dispatch({
-      type: 'SET_USERS',
+      type: "SET_USERS",
       payload: users,
     });
   };
 
   const addMessage = (message) => {
     dispatch({
-      type: 'NEW_MESSAGE',
+      type: "NEW_MESSAGE",
       payload: message,
     });
   };
 
-  React.useEffect(() => {
-    socket.on('ROOM:SET_USERS', setUsers);
-    socket.on('ROOM:NEW_MESSAGE', addMessage);
+  useEffect(() => {
+    socket.on("ROOM:SET_USERS", setUsers);
+    socket.on("ROOM:NEW_MESSAGE", addMessage);
   }, []);
 
   window.socket = socket;
-  return (
-    <>
-      {!state.joined ? (<LogBlock onLogin={onLogin} />) : (<Chat {...state} onAddMessage={addMessage} />)}
-    </>
 
+  return state.joined ? (
+    <Chat {...state} onAddMessage={addMessage} />
+  ) : (
+    <LogBlock onLogin={onLogin} />
   );
-}
-
-export default App;
+};

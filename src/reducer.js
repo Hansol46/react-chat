@@ -1,6 +1,9 @@
-export default (state, action) => {
+/**
+ * Основной редьюсер проекта
+ */
+export const rootReducer = (state, action) => {
   switch (action.type) {
-    case 'JOINED':
+    case "JOINED":
       return {
         ...state,
         joined: true,
@@ -8,20 +11,20 @@ export default (state, action) => {
         roomId: action.payload.roomId,
       };
 
-    case 'SET_DATA':
+    case "SET_DATA":
       return {
         ...state,
         users: action.payload.users,
         messages: action.payload.messages,
       };
 
-    case 'SET_USERS':
+    case "SET_USERS":
       return {
         ...state,
         users: action.payload,
       };
 
-    case 'NEW_MESSAGE':
+    case "NEW_MESSAGE":
       return {
         ...state,
         messages: [...state.messages, action.payload],
