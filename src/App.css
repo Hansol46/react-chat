@@ -1,8 +1,12 @@
+body {
+  background-color: pink;
+}
+
 .App {
   /* border: 2px solid black; */
   box-shadow: 0 0 5px rgba(0,0,0,0.9);
   border-radius: 30px;
-  width: 800px;
+  width: 600px;
   margin: 0 auto;
   padding-top: 200px;
   padding-bottom: 300px;
