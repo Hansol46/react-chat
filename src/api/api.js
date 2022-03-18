@@ -6,6 +6,5 @@ import axios from "axios";
 export const api = {
   getRooms: (roomId) => axios.get(`/rooms/${roomId}`),
 
-  // params = { roomId, userName }
   createRoom: (params) => axios.post("/rooms", params),
 };
